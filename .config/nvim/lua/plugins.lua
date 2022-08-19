@@ -10,7 +10,7 @@ vim.cmd [[packadd packer.nvim]]
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'EdenEast/nightfox.nvim'
+  use 'EdenEast/nightfox.nvim' -- Theme nightfox
   use 'hoob3rt/lualine.nvim' -- Statusline
   use 'neovim/nvim-lspconfig' -- LSP
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
@@ -41,4 +41,10 @@ packer.startup(function(use)
   use 'dinhhuy258/git.nvim' -- For git blame & browser
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
+  use 'ray-x/go.nvim' -- Golang
+  use 'folke/zen-mode.nvim' -- Zen-mode distraction-tree coding
+  use ({
+    'iamcco/markdown-preview.nvim',
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }) 
 end)
