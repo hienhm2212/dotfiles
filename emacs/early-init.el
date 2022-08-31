@@ -1,0 +1,7 @@
+;;;; Garbage collection
+;; Increase the GC threshold for faster startup
+;; The defaul is 800 kilobytes. Measured in bytes
+(setq gc-cons-threshold (* 50 1000 1000))
+
+(add-to-list 'load-path user-emacs-directory) ;; make sure the config can be made modular
+

@@ -1,0 +1,91 @@
+;;; basics.el --- Basic default                      -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2022  Hien Huynh-Minh
+
+;; Author: Hien Huynh-Minh <hienhm@bes>
+;; Keywords: 
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;;
+(setq inhibit-startup-message t)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
+
+;; Disable unnecessary stuff
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(menu-bar-mode -1)
+(set-fringe-mode 10)
+(setq visible-bell t)
+
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		shell-mode-hook
+		treemacs-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; Set fonts
+(set-face-attribute 'default nil :font "Iosevka" :height 110 :weight 'normal)
+(set-face-attribute 'fixed-pitch nil :font "Iosevka" :height 110 :weight 'normal)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 110 :weight 'regular)
+
+(customize-set-variable 'global-auto-revert-non-file-buffers t)
+(global-auto-revert-mode 1)
+(delete-selection-mode)
+(setq-default indent-tabs-mode nil)
+(setq use-short-answers t)
+
+(add-hook 'after-init-hook #'recentf-mode)
+(customize-set-variable 'recentf-save-file
+                        (expand-file-name ".cache/recentf" user-emacs-directory))
+
+(customize-set-variable 'kill-do-not-save-duplicates t)
+
+;; Make scrolling less stuttered
+(setq auto-window-vscroll nil)
+(customize-set-variable 'fast-but-imprecise-scrolling t)
+(customize-set-variable 'scroll-conservatively 101)
+(customize-set-variable 'scroll-margin 0)
+(customize-set-variable 'scroll-preserve-screen-position t)
+
+;; Better support for files with long lines
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq-default bidi-inhibit-bpa t)
+(global-so-long-mode 1)
+
+;; Make shebang (#!) file executable when saved
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+
+;; Enable savehist-mode for an command history
+(savehist-mode 1)
+(customize-set-variable 'savehist-file
+                        (expand-file-name ".cache/history" user-emacs-directory))
+
+
+;;; Code:
+
+
+
+(provide 'basics)
+;;; basics.el ends here
