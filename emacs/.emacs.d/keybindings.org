@@ -1,0 +1,280 @@
+#+TITLE: Little Fox Emacs — Keybinding Reference
+#+AUTHOR: Hien Huynh-Minh
+#+DATE: 2026-02-25
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:nil
+
+* Navigation
+| Key   | Command                                   | Notes                      |
+|-------+-------------------------------------------+----------------------------|
+| ~M-j~   | ~avy-goto-char-timer~                       | Jump to any char on screen |
+| ~M-i~   | Dired side panel                          | VC root or current dir     |
+| ~M-g j~ | ~dumb-jump-go~                              | Jump to definition         |
+| ~M-g o~ | ~dumb-jump-go-other-window~                 | Jump in other window       |
+| ~M-g x~ | ~dumb-jump-go-prefer-external~              |                            |
+| ~M-g z~ | ~dumb-jump-go-prefer-external-other-window~ |                            |
+| ~M-g b~ | ~dumb-jump-back~                            | Jump back                  |
+| ~C-o~   | ~ace-window~                                | Replaces ~other-window~      |
+
+* Buffers & Files
+| Key     | Command                     | Notes                  |
+|---------+-----------------------------+------------------------|
+| ~C-x C-b~ | ~ibuffer~                     | Buffer list            |
+| ~C-x b~   | ~consult-buffer~              | Enhanced buffer switch |
+| ~C-x 4 b~ | ~consult-buffer-other-window~ |                        |
+| ~C-x 5 b~ | ~consult-buffer-other-frame~  |                        |
+| ~C-x t b~ | ~consult-buffer-other-tab~    |                        |
+| ~C-x r b~ | ~consult-bookmark~            |                        |
+| ~C-x p b~ | ~consult-project-buffer~      | Project buffers        |
+| ~C-x M-:~ | ~consult-complex-command~     | History of M-: evals   |
+| ~M-s i~   | ~imenu~                       | Jump to symbol         |
+| ~C-c y~   | Copy buffer file path       | To clipboard           |
+
+* Editing
+| Key      | Command                    | Notes                        |
+|----------+----------------------------+------------------------------|
+| ~M-<up>~   | ~move-line-up~               | Also ~M-p~                     |
+| ~M-<down>~ | ~move-line-down~             | Also ~M-n~                     |
+| ~M-p~      | ~move-line-up~               | Alt for ~M-<up>~               |
+| ~M-n~      | ~move-line-down~             | Alt for ~M-<down>~             |
+| ~C->~      | ~mc/mark-next-like-this~     | Multiple cursors             |
+| ~C-<~      | ~mc/mark-previous-like-this~ |                              |
+| ~C-c C-<~  | ~mc/mark-all-like-this~      |                              |
+| ~M-y~      | ~consult-yank-pop~           | Browse kill ring             |
+| ~M-$~      | ~jinx-correct~               | Correct misspelling at point |
+| ~C-M-$~    | ~jinx-languages~             | Switch spell-check language  |
+
+* Search (Consult)
+| Key     | Command                 | Notes                     |
+|---------+-------------------------+---------------------------|
+| ~M-s r~   | ~consult-ripgrep~         | Ripgrep across project    |
+| ~M-s l~   | ~consult-line~            | Search current buffer     |
+| ~M-s L~   | ~consult-line-multi~      | Search all open buffers   |
+| ~M-s g~   | ~consult-grep~            |                           |
+| ~M-s G~   | ~consult-git-grep~        |                           |
+| ~M-s d~   | ~consult-find~            | Find file by name         |
+| ~M-s c~   | ~consult-locate~          |                           |
+| ~M-s k~   | ~consult-keep-lines~      | Filter buffer lines       |
+| ~M-s u~   | ~consult-focus-lines~     | Hide non-matching lines   |
+| ~M-s e~   | ~consult-isearch-history~ |                           |
+| ~M-g g~   | ~consult-goto-line~       | Also ~M-g M-g~              |
+| ~M-g e~   | ~consult-compile-error~   |                           |
+| ~M-g f~   | ~consult-flymake~         |                           |
+| ~M-g m~   | ~consult-mark~            |                           |
+| ~M-g k~   | ~consult-global-mark~     |                           |
+| ~M-g i~   | ~consult-imenu~           |                           |
+| ~M-g I~   | ~consult-imenu-multi~     | Across all buffers        |
+| ~C-c M-x~ | ~consult-mode-command~    |                           |
+| ~C-c h~   | ~consult-history~         |                           |
+| ~C-c k~   | ~consult-kmacro~          |                           |
+| ~C-c m~   | ~consult-man~             |                           |
+| ~C-c i~   | ~consult-info~            |                           |
+| ~<~       | Consult narrow key      | Narrows source in consult |
+
+** In isearch (~isearch-mode-map~)
+| Key   | Command                 |
+|-------+-------------------------|
+| ~M-j~   | ~avy-isearch~             |
+| ~M-e~   | ~consult-isearch-history~ |
+| ~M-s e~ | ~consult-isearch-history~ |
+| ~M-s l~ | ~consult-line~            |
+| ~M-s L~ | ~consult-line-multi~      |
+
+** In minibuffer (~minibuffer-local-map~)
+| Key     | Command             |
+|---------+---------------------|
+| ~M-s~   | ~consult-history~   |
+| ~M-r~   | ~consult-history~   |
+| ~M-A~   | ~marginalia-cycle~  |
+
+** wgrep — edit grep results (~wgrep-mode~)
+Activate from any ~*grep*~ / ~*rg*~ / ~*consult-ripgrep*~ buffer:
+| Key         | Command                | Notes                     |
+|-------------+------------------------+---------------------------|
+| ~C-c C-p~   | ~wgrep-change-to-wgrep-mode~ | Enter edit mode     |
+| ~C-c C-e~   | ~wgrep-finish-edit~    | Apply all changes         |
+| ~C-c C-k~   | ~wgrep-abort-changes~  | Discard changes           |
+| ~C-x C-s~   | ~wgrep-finish-edit~    | Also saves                |
+
+* Embark
+| Key       | Command            | Notes                         |
+|-----------+--------------------+-------------------------------|
+| ~C-.~     | ~embark-act~       | Act on candidate at point     |
+| ~C-:~     | ~embark-dwim~      | Default action                |
+| ~C-h B~   | ~embark-bindings~  | Browse all bindings           |
+
+* Completion (Corfu / Vertico)
+** Corfu popup (~corfu-map~)
+| Key       | Command                   |
+|-----------+---------------------------|
+| ~TAB~     | ~corfu-next~              |
+| ~S-TAB~   | ~corfu-previous~          |
+| ~RET~     | ~corfu-insert~            |
+| ~M-d~     | ~corfu-popupinfo-toggle~  |
+
+** Vertico minibuffer (~vertico-map~)
+| Key       | Command                      |
+|-----------+------------------------------|
+| ~M-i~     | ~vertico-quick-insert~       |
+| ~C-M-n~   | ~vertico-next-group~         |
+| ~C-M-p~   | ~vertico-previous-group~     |
+
+** Cape at-point completions
+| Key         | Command             |
+|-------------+---------------------|
+| ~C-c p f~   | ~cape-file~         |
+| ~C-c p d~   | ~cape-dabbrev~      |
+| ~C-c p k~   | ~cape-keyword~      |
+| ~C-c p s~   | ~cape-elisp-symbol~ |
+| ~C-c p w~   | ~cape-dict~         |
+
+* Help (Helpful)
+| Key         | Command               |
+|-------------+-----------------------|
+| ~C-h f~     | ~helpful-callable~    |
+| ~C-h v~     | ~helpful-variable~    |
+| ~C-h k~     | ~helpful-key~         |
+| ~C-h x~     | ~helpful-command~     |
+| ~C-h F~     | ~helpful-function~    |
+| ~C-c C-d~   | ~helpful-at-point~    |
+
+* Git (Magit / Timemachine)
+| Key         | Command              | Notes                      |
+|-------------+----------------------+----------------------------|
+| ~C-x g~     | ~magit-status~       |                            |
+| ~C-c g t~   | ~git-timemachine~    | Walk file commit history   |
+
+** git-timemachine navigation
+| Key   | Command                        |
+|-------+--------------------------------|
+| ~p~   | Previous revision              |
+| ~n~   | Next revision                  |
+| ~g~   | Go to specific revision        |
+| ~t~   | Go to revision by tag          |
+| ~q~   | Quit timemachine               |
+| ~b~   | Blame at current revision      |
+| ~c~   | Copy abbreviated hash          |
+| ~C~   | Copy full hash                 |
+
+* Popper — popup buffer management
+| Key         | Command               | Notes                           |
+|-------------+-----------------------+---------------------------------|
+| ~C-`~       | ~popper-toggle~       | Show/hide latest popup          |
+| ~M-`~       | ~popper-cycle~        | Cycle through popups            |
+| ~C-M-`~     | ~popper-toggle-type~  | Promote/demote buffer to popup  |
+
+* Shell (Eshell)
+| Key       | Command               | Scope              |
+|-----------+-----------------------+--------------------|
+| ~C-c e~   | ~eshell~              | Global             |
+| ~C-c l~   | History picker        | In eshell buffer   |
+| ~C-c t~   | Toggle prompt style   | In eshell buffer   |
+| ~C-c T~   | Toggle resource-heavy prompt | In eshell buffer |
+| ~C-l~     | Clear screen          | In eshell buffer   |
+
+* Notes (Denote)
+** Global
+| Key           | Command                      |
+|---------------+------------------------------|
+| ~C-c n n~     | ~denote~                     |
+| ~C-c n N~     | ~denote-type~                |
+| ~C-c n o~     | ~denote-open-or-create~      |
+| ~C-c n d~     | ~denote-sort-dired~          |
+| ~C-c n r~     | ~denote-rename-file~         |
+| ~C-c n i~     | ~denote-link-or-create~      |
+| ~C-c n f~     | ~consult-denote-find~        |
+| ~C-c n g~     | ~consult-denote-grep~        |
+| ~C-c n m~     | ~list-denotes~               |
+| ~C-c n s~     | ~denote-search~              |
+
+** In text-mode (~text-mode-map~)
+| Key           | Command                               |
+|---------------+---------------------------------------|
+| ~C-c n l~     | ~denote-link~                         |
+| ~C-c n L~     | ~denote-add-links~                    |
+| ~C-c n b~     | ~denote-backlinks~                    |
+| ~C-c n R~     | ~denote-rename-file-using-front-matter~ |
+
+** In Dired (~dired-mode-map~)
+| Key               | Command                                        |
+|-------------------+------------------------------------------------|
+| ~C-c C-d C-i~     | ~denote-dired-link-marked-notes~               |
+| ~C-c C-d C-r~     | ~denote-dired-rename-files~                    |
+| ~C-c C-d C-k~     | ~denote-dired-rename-marked-files-with-keywords~ |
+| ~C-c C-d C-f~     | ~denote-dired-rename-marked-files-using-front-matter~ |
+
+* Org
+| Key       | Command          |
+|-----------+------------------|
+| ~C-c a~   | ~org-agenda~     |
+| ~C-c c~   | ~org-capture~    |
+
+* AI / GPTel
+| Key             | Command                   | Notes                      |
+|-----------------+---------------------------+----------------------------|
+| ~C-c SPC g~     | ~gptel~                   | Open chat buffer           |
+| ~C-c SPC s~     | ~gptel-send~              | Send prompt                |
+| ~C-c SPC r~     | ~gptel-rewrite-menu~      | Rewrite selection          |
+| ~C-c SPC m~     | ~gptel-menu~              | Full transient menu        |
+| ~C-c SPC a~     | ~gptel-add~               | Add context                |
+| ~C-c SPC d~     | ~gptel-set-directive~     | Set system directive       |
+| ~C-c SPC b~     | ~gptel-set-backend~       | Switch AI backend          |
+| ~C-c SPC 1~     | Switch to Claude          | claude-sonnet-4            |
+| ~C-c SPC 2~     | Switch to GPT-4           | gpt-4o                     |
+| ~C-c SPC q~     | Quick query               | One-off, no chat buffer    |
+| ~C-c SPC e~     | Explain code              | Region or defun at point   |
+| ~C-c SPC i~     | Improve writing           | Region → kill ring         |
+| ~C-c SPC S~     | Summarize                 | Region or whole buffer     |
+| ~C-c RET~       | ~gptel-send~              | In ~gptel-mode-map~ only   |
+
+* Web
+| Key       | Command      | Notes                            |
+|-----------+--------------+----------------------------------|
+| ~C-x /~   | ~webjump~    | Quick jump: Google, YouTube, etc |
+
+* Language Modes
+** Go (~go-mode-map~)
+| Key           | Command                       |
+|---------------+-------------------------------|
+| ~C-c C-d~     | ~godoc-at-point~              |
+| ~C-c C-a~     | ~go-import-add~               |
+| ~C-c C-r~     | ~go-remove-unused-imports~    |
+
+** Ruby (~ruby-mode-map~)
+| Key           | Command               |
+|---------------+-----------------------|
+| ~C-c C-s~     | ~inf-ruby~            |
+| ~C-c C-r~     | ~ruby-send-region~    |
+| ~C-c C-b~     | ~ruby-send-buffer~    |
+
+* Dired (~dired-mode-map~)
+| Key     | Command                         |
+|---------+---------------------------------|
+| ~=~     | Open dir in side window         |
+| ~-~     | Navigate to parent in side win  |
+| ~b~     | ~dired-up-directory~            |
+
+* Presentation (~org-present-mode-keymap~)
+| Key         | Command                      |
+|-------------+------------------------------|
+| ~C-x ]~     | ~org-present-next~           |
+| ~C-x [~     | ~org-present-prev~           |
+| ~C-c +~     | Zoom in on inline images     |
+| ~C-c -~     | Zoom out on inline images    |
+
+* Misc
+| Key       | Command          | Notes                   |
+|-----------+------------------+-------------------------|
+| ~<f9>~    | ~hydra-zoom~     | j=in  k=out  0=reset  q=quit |
+| ~C-c y~   | Copy file path   | Current buffer's path to clipboard |
+
+* Orderless Completion Qualifiers
+These modifiers work inside any Orderless-powered completion (Vertico, Corfu):
+
+| Qualifier | Meaning       | Example           |
+|-----------+---------------+-------------------|
+| ~!~       | Exclude       | ~!test~           |
+| ~,~       | Initialism    | ~,rf~ → ~read-file~ |
+| ~=~       | Literal match | ~=exact~          |
+| ~~~       | Flex match    | ~~abc~            |
+| ~%~       | Char-fold     | ~%ü~ matches ~u~  |

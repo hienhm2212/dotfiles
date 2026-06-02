@@ -1,0 +1,59 @@
+[user]
+    email = hienhm@bestarion.com
+    name   = HienHM
+
+[init]
+    defaultBranch = main
+
+[fetch]
+    tags = true
+    prune = true
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[rebase]
+    autoStash = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[diff]
+    algorithm  = histogram
+    colorMoved = default
+
+# ── Delta (better diffs) ───────────────────────────────────────────────────
+[core]
+    editor   = emacsclient -t -a emacs
+    pager    = delta
+    autocrlf = input
+
+[delta]
+    navigate     = true
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = Catppuccin Mocha
+
+[interactive]
+    diffFilter = delta --color-only
+
+# ── Aliases ────────────────────────────────────────────────────────────────
+[alias]
+    st     = status -sb
+    lg     = log --oneline --graph --decorate --all
+    lp     = log --pretty=format:'%C(yellow)%h%Creset %C(blue)%ad%Creset %C(green)%an%Creset %s' --date=short
+    undo   = reset --soft HEAD~1
+    fixup  = commit --fixup
+    ri     = rebase -i
+    aliases = config --get-regexp alias
+
+# ── URL rewrite ────────────────────────────────────────────────────────────
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+# ── Colors ─────────────────────────────────────────────────────────────────
+[color]
+    ui = auto
