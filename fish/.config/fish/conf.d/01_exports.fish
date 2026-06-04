@@ -17,3 +17,4 @@ set -gx PAGER less
 set -gx LESS "-R --quit-if-one-screen --no-init"
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
+set -gx PKG_CONFIG_PATH "/usr/local/lib/pkgconfig" $PKG_CONFIG_PATH

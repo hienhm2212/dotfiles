@@ -100,6 +100,15 @@
 
 ;;; Code:
 
+
+;; Silence undefined hardware keys
+(global-set-key (kbd "<XF86MonBrightnessUp>") #'ignore)
+(global-set-key (kbd "<XF86MonBrightnessDown>") #'ignore)
+(global-set-key (kbd "C-<XF86MonBrightnessUp>") #'ignore)
+(global-set-key (kbd "C-<XF86MonBrightnessDown>") #'ignore)
+(global-set-key (kbd "M-<XF86MonBrightnessUp>") #'ignore)
+(global-set-key (kbd "M-<XF86MonBrightnessDown>") #'ignore)
+
 ;; ──────────────────────────────────────────────
 ;; Hydra
 ;; ──────────────────────────────────────────────

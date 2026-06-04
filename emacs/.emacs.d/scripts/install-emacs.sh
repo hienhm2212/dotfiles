@@ -81,7 +81,7 @@ build_emacs() {
         --with-native-compilation=aot \
         --with-json \
         --with-tree-sitter \
-        --with-xwidgets \
+        --with-xwidgets --with-webkit=webkit2gtk-4.1 \
         --with-mailutils \
         --with-imagemagick \
         --with-modules \

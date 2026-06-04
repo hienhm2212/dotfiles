@@ -65,9 +65,9 @@
                (python     . ("https://github.com/tree-sitter/tree-sitter-python"     "v0.21.0" "src"))
                (go         . ("https://github.com/tree-sitter/tree-sitter-go"         "v0.21.0" "src"))
                (gomod      . ("https://github.com/camdencheek/tree-sitter-go-mod"     "v1.0.2"  "src"))
-               (markdown   . ("https://github.com/ikatyang/tree-sitter-markdown"      "v0.7.1"  "tree-sitter-markdown/src"))
-               (make       . ("https://github.com/alemuller/tree-sitter-make"         "v1.0.0"  "src"))
-               (elisp      . ("https://github.com/Wilfred/tree-sitter-elisp"          "v1.3.0"  "src"))
+               (markdown   . ("https://github.com/MDeiml/tree-sitter-markdown" nil "tree-sitter-markdown/src"))
+               (make       . ("https://github.com/alemuller/tree-sitter-make" nil "src"))
+               (elisp      . ("https://github.com/Wilfred/tree-sitter-elisp" nil "src"))
                (cmake      . ("https://github.com/uyha/tree-sitter-cmake"             "v0.5.0"  "src"))
                (c          . ("https://github.com/tree-sitter/tree-sitter-c"          "v0.21.3" "src"))
                (cpp        . ("https://github.com/tree-sitter/tree-sitter-cpp"        "v0.22.0" "src"))
@@ -311,25 +311,36 @@
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1)
-  (setq projectile-completion-system 'default
-        projectile-enable-caching t
-        projectile-indexing-method 'hybrid)
+  (setq projectile-completion-system   'default
+        projectile-enable-caching      nil
+        projectile-auto-discover       nil
+        projectile-indexing-method     'hybrid
+        projectile-project-root-functions
+        '(projectile-root-local
+          projectile-root-top-down
+          projectile-root-bottom-up
+          projectile-root-top-down-recurring))
   (add-to-list 'projectile-globally-ignored-files "node_modules")
   (add-to-list 'projectile-globally-ignored-files ".cache")
   (add-to-list 'projectile-globally-ignored-files "_cache")
-  (add-to-list 'projectile-globally-ignored-files "~")
-  (add-to-list 'projectile-globally-ignored-files "#"))
+  ;; Guard: don't call project-root on buffers without a file
+  (advice-add 'projectile-project-root :around
+              (lambda (orig-fn &rest args)
+		(when (or (buffer-file-name) (eq major-mode 'dired-mode))
+                  (apply orig-fn args))))
+  ;; Only show project name if we are in a real project
+  (defun my-projectile-open-notes ()
+    "Open notes.org in the current project root."
+    (interactive)
+    (if-let* ((root (and (buffer-file-name) (projectile-project-root))))
+        (find-file-other-window (expand-file-name "notes.org" root))
+      (message "Not in a project"))))
 
 (use-package makefile-executor
   :ensure t
   :defer t
   :config
   (add-hook 'makefile-mode-hook 'makefile-executor-mode))
-
-(defun my-projectile-open-notes ()
-  "Open notes.org in the current project root."
-  (interactive)
-  (find-file-other-window (expand-file-name "notes.org" (projectile-project-root))))
 
 ;; ──────────────────────────────────────────────
 ;; Magit
@@ -492,7 +503,7 @@
                                     (no-delete-other-windows . t)
                                     (mode-line-format . (" " "%b"))))))
       (with-current-buffer dir
-        (when-let ((window (get-buffer-window dir)))
+        (when-let* ((window (get-buffer-window dir)))
           (select-window window)
           (rename-buffer "*Dired-Side*")))))
 

@@ -233,6 +233,8 @@
 
 (use-package pulsar
   :ensure t
+  :init
+  (defvar pulsar-mode--set-explicitly nil)
   :custom
   (pulsar-pulse t)
   (pulsar-delay 0.055)
