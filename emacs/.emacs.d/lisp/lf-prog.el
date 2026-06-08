@@ -754,5 +754,24 @@
          ("C-c b N" . arrow-project-next)
          ("C-c b v" . arrow-project-prev)))
 
+;; ──────────────────────────────────────────────
+;; smerge — resolve merge conflicts
+;; ──────────────────────────────────────────────
+(use-package smerge-mode
+  :ensure nil
+  :hook (find-file . (lambda ()
+                       (save-excursion
+                         (goto-char (point-min))
+                         (when (re-search-forward "^<<<<<<< " nil t)
+                           (smerge-mode 1)))))
+  :bind (:map smerge-mode-map
+              ("C-c ^ n" . smerge-next)
+              ("C-c ^ p" . smerge-prev)
+              ("C-c ^ u" . smerge-keep-upper)
+              ("C-c ^ l" . smerge-keep-lower)
+              ("C-c ^ b" . smerge-keep-all)
+              ("C-c ^ RET" . smerge-keep-current)
+              ("C-c ^ e" . smerge-ediff)))
+
 (provide 'lf-prog)
 ;;; lf-prog.el ends here
