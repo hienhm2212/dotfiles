@@ -509,5 +509,43 @@ for injecting values without prompting.  Only the title is prompted."
             (lambda ()
               (setq-local gptel-default-mode 'org-mode))))
 
+
+;; ──────────────────────────────────────────────
+;; org-super-agenda
+;; ──────────────────────────────────────────────
+(use-package org-super-agenda
+  :ensure (:host github 
+           :repo "alphapapa/org-super-agenda"
+           :files ("org-super-agenda.el"))
+  :after org-agenda
+  :config
+  (org-super-agenda-mode)
+  (setq org-super-agenda-groups
+        '((:name "Today"
+                 :time-grid t
+                 :date today
+                 :scheduled today
+                 :deadline today
+                 :order 1)
+          (:name "Overdue"
+                 :deadline past
+                 :order 2)
+          (:name "Due Soon"
+                 :deadline future
+                 :order 3)
+          (:name "In Progress"
+                 :todo "NEXT"
+                 :order 4)
+          (:name "Waiting"
+                 :todo "WAITING"
+                 :order 5)
+          (:name "Work"
+                 :file-path "work.org"
+                 :order 6)
+          (:name "Inbox"
+                 :file-path "inbox.org"
+                 :order 7)
+          (:discard (:anything t)))))
+
 (provide 'lf-org)
 ;;; lf-org.el ends here
