@@ -58,4 +58,8 @@
             ;; Garbage collect on focus loss
             (add-hook 'focus-out-hook #'garbage-collect)))
 
+;; Suppress known harmless elpaca warning
+(setq warning-suppress-types '((emacs)))
+(setq warning-suppress-log-types '((emacs)))
+
 ;;; early-init.el ends here

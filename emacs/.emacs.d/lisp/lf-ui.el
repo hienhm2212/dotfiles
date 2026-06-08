@@ -310,7 +310,7 @@
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-center-content t
-        dashboard-startup-banner (expand-file-name "~/.config/emacs/emacs_banner.png")
+        dashboard-startup-banner 'official
         dashboard-icon-type 'nerd-icons
         dashboard-display-icons-p t
         dashboard-items '((recents   . 5)
@@ -353,6 +353,14 @@
   (indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1))
   (indent-bars-highlight-current-depth '(:blend 0.5))
   :hook ((prog-mode yaml-mode ruby-mode ruby-ts-mode) . indent-bars-mode))
+
+;; ──────────────────────────────────────────────
+;; highlight-line
+;; ──────────────────────────────────────────────
+(use-package hl-line
+  :ensure nil
+  :config
+  (global-hl-line-mode 1))
 
 (provide 'lf-ui)
 ;;; lf-ui.el ends here
