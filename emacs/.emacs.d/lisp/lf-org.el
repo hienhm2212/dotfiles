@@ -27,7 +27,10 @@
    org-pretty-entities t
    org-use-sub-superscripts nil
    org-hide-leading-stars t
-   org-agenda-files '("~/org")
+   org-agenda-files '("~/org/inbox.org"
+		      "~/org/work.org"
+		      "~/org/decisions.org"
+		      "~/org/calendar.org")
    org-todo-keywords
    '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)"))
    org-todo-keyword-faces
