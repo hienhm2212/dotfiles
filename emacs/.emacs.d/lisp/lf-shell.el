@@ -307,5 +307,19 @@
           "lazygit" "lazydocker" "ncmpcpp" "newsbeuter" "nethack" "mutt" "neomutt" "tmux"
           "docker" "podman" "jqp")))
 
+
+;; ──────────────────────────────────────────────
+;; eat — fast terminal emulator inside Emacs
+;; ──────────────────────────────────────────────
+(use-package eat
+  :ensure t
+  :bind (("C-c t" . eat))
+  :custom
+  (eat-kill-buffer-on-exit t)
+  (eat-enable-mouse t)
+  :config
+  ;; Fish shell integration
+  (setq eat-shell (executable-find "fish")))
+
 (provide 'lf-shell)
 ;;; lf-shell.el ends here
