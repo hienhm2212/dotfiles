@@ -17,7 +17,7 @@ end
 
 # bat
 if command -q bat
-    set -gx BAT_THEME "Catppuccin Mocha"
+    set -gx BAT_THEME "Catppuccin%20Mocha"
     alias cat="bat --style=plain"
 end
 
