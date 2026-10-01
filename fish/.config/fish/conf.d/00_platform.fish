@@ -1,6 +1,6 @@
 # OS detection - used by all other conf.d files
 switch (uname -s)
-    case linux
+    case Linux
 	set -gx PLATFORM linux
 	set -gx IS_LINUX true
 	set -gx IS_MACOS false
