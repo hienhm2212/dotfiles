@@ -8,6 +8,9 @@ if command -q eza
     alias ls="eza --group-directories-first --icons"
     alias ll="eza -la --group-directories-first --icons --git"
     alias lt="eza --tree --level=2 --icons"
+else if test "$PLATFORM" = macos
+    alias ls="ls -G"
+    alias ll="ls -lahFG"
 else
     alias ls="ls --color=auto"
     alias ll="ls -lahF --color=auto"
@@ -19,15 +22,11 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias df="df -h"
 alias du="du -ch"
-alias free="free -m"
 alias sizeof="du -hs"
-alias fs="df -h -x squashfs -x tmpfs -x devtmpfs"
 
 # Network
 alias myip="curl ifconfig.co"
-alias localip="ip -o route get to 1.1.1.1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'"
 alias whereami="curl ifconfig.co/json"
-alias ports="ss -tulnp"
 
 # Emacs
 alias e="emacsclient -t -a emacs"
@@ -66,12 +65,21 @@ alias reload="exec fish"
 alias dotfiles="cd $HOME/.dotfiles"
 alias b="bash -c"
 
-# Platform specific
+# Platform specific - free/fs/localip/ports wrap GNU/iproute2 tools on Linux
+# and their BSD/macOS equivalents on macOS
 if test "$PLATFORM" = linux
+    alias free="free -m"
+    alias fs="df -h -x squashfs -x tmpfs -x devtmpfs"
+    alias localip="ip -o route get to 1.1.1.1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'"
+    alias ports="ss -tulnp"
     alias open="xdg-open"
     alias pbcopy="xclip -selection clipboard"
     alias pbpaste="xclip -selection clipboard -o"
     alias update="sudo apt update && sudo apt upgrade -y"
 else if test "$PLATFORM" = macos
+    alias free="top -l 1 -s 0 | grep PhysMem"
+    alias fs="df -hl"
+    alias localip="ipconfig getifaddr (route -n get default | awk '/interface:/ {print \$2}')"
+    alias ports="lsof -nP -iTCP -sTCP:LISTEN"
     alias update="brew update && brew upgrade"
 end

@@ -1,7 +1,7 @@
 function copy --description "Copy pipe or argument to clipboard"
     if [ "$argv" = "" ]
-        xclip -sel clip
+        _clip
     else
-        printf "%s" "$argv" | xclip -sel clip
+        printf "%s" "$argv" | _clip
     end
 end

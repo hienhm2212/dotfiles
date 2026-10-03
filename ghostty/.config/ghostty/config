@@ -36,6 +36,10 @@ shell-integration-features = no-cursor,sudo,no-title
 # ── Mouse ──────────────────────────────────────────────────────────────────
 mouse-hide-while-typing = true
 
+# ── macOS ──────────────────────────────────────────────────────────────────
+# Option sends Alt, so fzf Alt+C and fish Alt bindings work (ignored on Linux)
+macos-option-as-alt = true
+
 # ── Clipboard ──────────────────────────────────────────────────────────────
 copy-on-select = clipboard
 clipboard-read = allow

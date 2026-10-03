@@ -19,8 +19,21 @@ Works on Ubuntu/Linux and macOS.
 ```bash
 git clone git@github.com:hienhm2212/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-bash install.sh
+make install   # packages for this OS + stow + fish as login shell
 ```
+
+`install.sh` detects the OS:
+
+- **macOS** — installs Homebrew if missing, then `brew bundle` from `Brewfile`
+  (Apple Silicon and Intel both supported).
+- **Ubuntu/Debian** — apt packages, symlinks `fdfind`/`batcat` to `fd`/`bat`
+  in `~/.local/bin`, installs starship and mise via their install scripts.
+  yazi and ghostty are not in apt; install them separately.
+
+Fonts are not installed automatically: Ghostty expects *BerkeleyMono Nerd Font*.
+
+If stow reports a conflict, an existing file (e.g. `~/.config/fish/config.fish`)
+is in the way — back it up and remove it, then `make stow` again.
 
 ## How it works
 
@@ -29,9 +42,12 @@ Stow mirrors each package directory into $HOME as symlinks.
 ## Daily commands
 
 ```bash
+make           # list targets
+make install   # install packages for this OS, then stow
 make stow      # symlink all packages
 make unstow    # remove all symlinks
 make restow    # re-stow after adding files
+make dry-run   # preview what stow would do
 make update    # git pull + restow
 ```
 
@@ -46,7 +62,14 @@ Config is split into conf.d/ files loaded in order:
 - 04_aliases.fish   — aliases and git abbreviations
 - 05_starship.fish  — prompt init
 
-Functions in fish/functions/ — one file per function.
+Functions in fish/functions/ — one file per function (the file name must
+match the function name, or fish won't autoload it).
+
+Linux-only commands (`free`, `fs`, `localip`, `ports`, clipboard) are aliased
+per `$PLATFORM`, so the same config works on macOS.
+
+Machine-local settings (secrets, work paths) go in
+`fish/.config/fish/config-local.fish` — sourced last, ignored by git.
 
 ## Emacs
 
