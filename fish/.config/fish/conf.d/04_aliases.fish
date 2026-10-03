@@ -25,7 +25,7 @@ alias fs="df -h -x squashfs -x tmpfs -x devtmpfs"
 
 # Network
 alias myip="curl ifconfig.co"
-alias localip="ip -o route get to 1.1.1.1 | sed -n 's/.*src \([0-9.]\+\).*\1/p'"
+alias localip="ip -o route get to 1.1.1.1 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'"
 alias whereami="curl ifconfig.co/json"
 alias ports="ss -tulnp"
 

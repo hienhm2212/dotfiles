@@ -9,7 +9,7 @@ function fish_user_key_bindings
         bind \cr history-search-backward
     end
 
-    # Alt+Arrow directory navigation
+    # Ctrl+Alt+Arrow directory navigation
     bind \e\[1\;7D "prevd; echo; commandline -f repaint"
     bind \e\[1\;7C "nextd; echo; commandline -f repaint"
     bind \e\[1\;7A "cd ..; echo; commandline -f repaint"

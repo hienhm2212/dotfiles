@@ -41,7 +41,7 @@ Config is split into conf.d/ files loaded in order:
 
 - 00_platform.fish  — OS detection
 - 01_exports.fish   — PATH, environment variables
-- 02_go.fish        — Go and Flutter
+- 02_go.fish        — Go toolchain
 - 03_tools.fish     — fzf, bat, zoxide, yazi, ripgrep
 - 04_aliases.fish   — aliases and git abbreviations
 - 05_starship.fish  — prompt init
