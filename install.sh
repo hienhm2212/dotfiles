@@ -25,6 +25,14 @@ install_macos() {
     brew bundle --file="$DOTFILES/Brewfile"
 }
 
+install_tide() {
+    # fisher is a fish function shipped by the Homebrew formula
+    if ! fish -c 'functions -q tide' 2>/dev/null; then
+        info "Installing tide prompt"
+        fish -c 'fisher install ilancosman/tide@v6'
+    fi
+}
+
 install_linux() {
     if ! command -v apt-get >/dev/null 2>&1; then
         warn "Only apt-based distros are supported; install packages manually"
@@ -83,6 +91,9 @@ esac
 
 info "Stowing dotfiles"
 make -C "$DOTFILES" stow
+
+# After stow, so fisher writes into the real ~/.config/fish, not the repo
+[[ "$(uname -s)" == Darwin ]] && install_tide
 
 set_login_shell
 

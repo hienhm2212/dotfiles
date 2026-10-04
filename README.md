@@ -25,7 +25,7 @@ make install   # packages for this OS + stow + fish as login shell
 `install.sh` detects the OS:
 
 - **macOS** — installs Homebrew if missing, then `brew bundle` from `Brewfile`
-  (Apple Silicon and Intel both supported).
+  (Apple Silicon and Intel both supported), then the tide prompt via fisher.
 - **Ubuntu/Debian** — apt packages, symlinks `fdfind`/`batcat` to `fd`/`bat`
   in `~/.local/bin`, installs starship and mise via their install scripts.
   yazi and ghostty are not in apt; install them separately.
@@ -69,7 +69,20 @@ Linux-only commands (`free`, `fs`, `localip`, `ports`, clipboard) are aliased
 per `$PLATFORM`, so the same config works on macOS.
 
 Machine-local settings (secrets, work paths) go in
-`fish/.config/fish/config-local.fish` — sourced last, ignored by git.
+`~/.config/fish/config-local.fish` — sourced last, never stowed or committed.
+
+### Prompt
+
+- **Linux** — starship (`starship/.config/starship.toml`).
+- **macOS** — [tide](https://github.com/IlanCosman/tide), installed with fisher.
+  `05_starship.fish` skips starship whenever tide is installed, so the two never
+  fight over `fish_prompt`. Tide's settings live in fish universal variables
+  (`~/.config/fish/fish_variables`), which stay on the machine — re-run
+  `tide configure` on a new Mac.
+
+Stow runs with `--no-folding`, so `~/.config/fish` is a real directory with
+symlinked files: fisher plugins and `fish_variables` stay out of the repo
+(`fish/.stow-local-ignore`).
 
 ## Emacs
 

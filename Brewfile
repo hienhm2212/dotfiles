@@ -3,7 +3,7 @@
 # Shell
 brew "fish"
 brew "stow"
-brew "starship"
+brew "fisher"                    # install.sh uses it to install tide (prompt)
 brew "mise"
 
 # CLI tools used by fish/conf.d and functions

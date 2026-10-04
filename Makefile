@@ -1,7 +1,9 @@
 # Dotfiles - symlink packages into $HOME with GNU Stow
 
 PACKAGES := fish git ghostty starship yazi emacs
-STOW     := stow --dir=$(CURDIR) --target=$(HOME) --verbose=1
+# --no-folding: link files, not whole directories, so tools that write into
+# ~/.config (fisher, fish_variables, config-local.fish) don't write into the repo
+STOW     := stow --dir=$(CURDIR) --target=$(HOME) --no-folding --verbose=1
 
 .DEFAULT_GOAL := help
 .PHONY: help install stow unstow restow dry-run update
