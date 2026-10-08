@@ -1,6 +1,6 @@
 # Dotfiles - symlink packages into $HOME with GNU Stow
 
-PACKAGES := fish git ghostty starship yazi emacs
+PACKAGES := fish git ghostty starship yazi emacs tmux
 # --no-folding: link files, not whole directories, so tools that write into
 # ~/.config (fisher, fish_variables, config-local.fish) don't write into the repo
 STOW     := stow --dir=$(CURDIR) --target=$(HOME) --no-folding --verbose=1

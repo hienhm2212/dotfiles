@@ -13,6 +13,7 @@ Works on Ubuntu/Linux and macOS.
 | ghostty    | ~/.config/ghostty/config                     |
 | yazi       | ~/.config/yazi/yazi.toml                     |
 | starship   | ~/.config/starship.toml                      |
+| tmux       | ~/.config/tmux/tmux.conf                     |
 
 ## Quick start
 
@@ -83,6 +84,26 @@ Machine-local settings (secrets, work paths) go in
 Stow runs with `--no-folding`, so `~/.config/fish` is a real directory with
 symlinked files: fisher plugins and `fish_variables` stay out of the repo
 (`fish/.stow-local-ignore`).
+
+## tmux
+
+Prefix is **C-z** (Emacs keeps C-a, C-b and C-SPC; press C-z C-z to suspend a
+job in fish). tmux owns windows and panes; Ghostty has no tab/split bindings.
+
+| Keys (after C-z) | Action                         |
+|------------------|--------------------------------|
+| `c`              | new window (current directory) |
+| `H` / `L`        | previous / next window         |
+| `<` / `>`        | move window left / right       |
+| `\|` / `-`       | split right / below            |
+| `h j k l`        | move between panes             |
+| `C-h C-j C-k C-l`| resize pane                    |
+| `z` / `e` / `x`  | zoom / even layout / kill pane |
+| `[`              | copy mode (Emacs keys, M-w copies to clipboard) |
+| `r`              | reload config                  |
+
+Fish abbreviations: `ta` attaches to (or creates) the `main` session, `tl`
+lists sessions.
 
 ## Emacs
 

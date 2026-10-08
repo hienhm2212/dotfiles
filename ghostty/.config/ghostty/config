@@ -45,29 +45,7 @@ copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow
 
-# ── Keybindings (ctrl+a leader, tmux-style) ────────────────────────────────
-keybind = ctrl+a>r=reload_config
-keybind = ctrl+a>x=close_surface
-keybind = ctrl+a>n=new_window
-
-# tabs
-keybind = ctrl+a>c=new_tab
-keybind = ctrl+a>shift+l=next_tab
-keybind = ctrl+a>shift+h=previous_tab
-keybind = ctrl+a>comma=move_tab:-1
-keybind = ctrl+a>period=move_tab:1
-
-# splits
-keybind = ctrl+a>3=new_split:right
-keybind = ctrl+a>2=new_split:down
-keybind = ctrl+a>h=goto_split:left
-keybind = ctrl+a>l=goto_split:right
-keybind = ctrl+a>k=goto_split:top
-keybind = ctrl+a>j=goto_split:bottom
-keybind = ctrl+a>z=toggle_split_zoom
-keybind = ctrl+a>f=toggle_split_zoom
-keybind = ctrl+a>e=equalize_splits
-
-# scroll
-keybind = ctrl+a>u=scroll_page_up
-keybind = ctrl+a>d=scroll_page_down
+# ── Keybindings ────────────────────────────────────────────────────────────
+# Tabs and splits live in tmux (prefix C-z, see tmux/.config/tmux/tmux.conf).
+# No ctrl+a leader here, so C-a reaches fish and Emacs (beginning of line).
+# Reload config: Ghostty default (ctrl+shift+comma / cmd+shift+comma).

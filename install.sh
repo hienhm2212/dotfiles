@@ -41,7 +41,7 @@ install_linux() {
 
     info "Installing apt packages"
     sudo apt-get update
-    sudo apt-get install -y fish stow git curl xclip fzf ripgrep fd-find bat zoxide
+    sudo apt-get install -y fish stow tmux git curl xclip fzf ripgrep fd-find bat zoxide
 
     # Not packaged on older Ubuntu releases - install what's available
     for pkg in eza git-delta; do

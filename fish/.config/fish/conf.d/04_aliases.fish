@@ -60,6 +60,10 @@ abbr -a grhh 'git reset --hard'
 abbr -a gst  'git stash'
 abbr -a gstp 'git stash pop'
 
+# tmux - attach to "main" or create it
+abbr -a ta 'tmux new-session -A -s main'
+abbr -a tl 'tmux list-sessions'
+
 # Misc
 alias reload="exec fish"
 alias dotfiles="cd $HOME/.dotfiles"

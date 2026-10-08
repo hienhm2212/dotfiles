@@ -5,6 +5,7 @@ brew "fish"
 brew "stow"
 brew "fisher"                    # install.sh uses it to install tide (prompt)
 brew "mise"
+brew "tmux"
 
 # CLI tools used by fish/conf.d and functions
 brew "git"
