@@ -1,0 +1,10 @@
+# Machine-local files fish and fisher write - never symlink them from the repo.
+# (This file replaces stow's built-in ignore list, so the defaults are repeated.)
+\.stow-local-ignore
+\.git
+\.gitignore
+^/README.*
+.+~
+\#.*\#
+fish_variables
+config-local\.fish
