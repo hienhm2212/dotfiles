@@ -33,6 +33,12 @@ alias e="emacsclient -t -a emacs"
 alias ec="emacsclient -c -a emacs"
 alias ek="emacsclient -e '(kill-emacs)'"
 
+# tmux - t attaches (or creates) a session named after the current directory
+abbr -a t   'tmux new-session -A -s (string replace -a -r "[.:]" _ (basename $PWD))'
+abbr -a ta  'tmux attach'
+abbr -a tl  'tmux ls'
+abbr -a tk  'tmux kill-session -t'
+
 # Git abbrs - visibal expansion is the point
 abbr -a g    git
 abbr -a gs   'git status -sb'

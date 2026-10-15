@@ -16,6 +16,7 @@ brew "bat"
 brew "eza"
 brew "zoxide"
 brew "yazi"
+brew "tmux"
 
 # Apps
 cask "ghostty"

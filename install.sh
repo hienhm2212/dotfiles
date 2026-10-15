@@ -41,7 +41,7 @@ install_linux() {
 
     info "Installing apt packages"
     sudo apt-get update
-    sudo apt-get install -y fish stow git curl xclip fzf ripgrep fd-find bat zoxide
+    sudo apt-get install -y fish stow git curl xclip tmux fzf ripgrep fd-find bat zoxide
 
     # Not packaged on older Ubuntu releases - install what's available
     for pkg in eza git-delta; do
@@ -72,6 +72,17 @@ install_linux() {
     done
 }
 
+install_tpm() {
+    # Plugins live in ~/.config/tmux/plugins (a real dir thanks to --no-folding)
+    local tpm="$HOME/.config/tmux/plugins/tpm"
+    command -v tmux >/dev/null 2>&1 || return 0
+    if [[ ! -d "$tpm" ]]; then
+        info "Installing tmux plugin manager"
+        git clone --depth 1 https://github.com/tmux-plugins/tpm "$tpm"
+    fi
+    "$tpm/bin/install_plugins" >/dev/null || warn "tpm: run prefix + I inside tmux"
+}
+
 set_login_shell() {
     local fish_path
     fish_path="$(command -v fish || true)"
@@ -94,6 +105,7 @@ make -C "$DOTFILES" stow
 
 # After stow, so fisher writes into the real ~/.config/fish, not the repo
 [[ "$(uname -s)" == Darwin ]] && install_tide
+install_tpm
 
 set_login_shell
 
